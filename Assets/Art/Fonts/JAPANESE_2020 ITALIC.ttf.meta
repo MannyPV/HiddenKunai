@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5e0c363d3c38a784198076536c340b74
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Japanese 2020
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 037840fa86ea4434195dbcb4b936bed6, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
