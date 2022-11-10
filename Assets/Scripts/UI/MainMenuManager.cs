@@ -9,7 +9,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] string whiteHex;
     [SerializeField] string blackHex;
 
-    public GameObject credBtn, credMenu, mainMenu, helpMenu, optMenu, playTran;
+    public GameObject credBtn, credMenu, mainMenu, helpMenu, optMenu, quitMenu, quitopt, playTran;
     public TextMeshProUGUI topText;
 
     bool ButtonClicked;
@@ -27,6 +27,7 @@ public class MainMenuManager : MonoBehaviour
         optMenu.SetActive(false);
         helpMenu.SetActive(false);
         credMenu.SetActive(false);
+        quitMenu.SetActive(false);
         topText.text = ("<color=" + blackHex + ">HIDDEN  KUNAI</color>");
         LeanTween.alpha(playTran.GetComponent<RectTransform>(), 1f, 0.4f);
         LeanTween.moveLocal(playTran, new Vector2(0f, 0f),0.2f).setEase(LeanTweenType.easeOutQuint);
@@ -42,6 +43,7 @@ public class MainMenuManager : MonoBehaviour
         playTran.SetActive(false);
         credMenu.SetActive(false);
         helpMenu.SetActive(false);
+        quitMenu.SetActive(false);
         LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(optMenu.GetComponent<RectTransform>(), 1f, 0.15f);
         LeanTween.scale(optMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
@@ -56,6 +58,7 @@ public class MainMenuManager : MonoBehaviour
         playTran.SetActive(false);
         credMenu.SetActive(false);
         optMenu.SetActive(false);
+        quitMenu.SetActive(false);
         LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(helpMenu.GetComponent<RectTransform>(), 1f, 0.15f);
         LeanTween.scale(helpMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
@@ -70,10 +73,27 @@ public class MainMenuManager : MonoBehaviour
         playTran.SetActive(false);
         optMenu.SetActive(false);
         helpMenu.SetActive(false);
+        quitMenu.SetActive(false);
         LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(credMenu.GetComponent<RectTransform>(), 1f, 0.15f);
         LeanTween.scale(credMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.moveLocal(credMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint);
+    }
+
+    public void QuitClicked()
+    {
+        ButtonClicked = true;
+        topText.text = "Quit?";
+        topText.fontSize = 120;
+        playTran.SetActive(false);
+        optMenu.SetActive(false);
+        helpMenu.SetActive(false);
+        credMenu.SetActive(false);
+        quitopt.SetActive(true);
+        LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0.3f, 0.15f);
+        LeanTween.scale(quitMenu, new Vector2(1.8f,1.7f),0.3f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.moveLocal(quitMenu, new Vector2(-860f,-440f),0.01f).setEase(LeanTweenType.easeOutQuint);
     }
 
     void Update()
@@ -88,6 +108,8 @@ public class MainMenuManager : MonoBehaviour
             optMenu.SetActive(true);
             helpMenu.SetActive(true);
             credMenu.SetActive(true);
+            quitMenu.SetActive(true);
+            quitopt.SetActive(false);
 
             LeanTween.scale(mainMenu, new Vector2(1f,1f),0.25f).setEase(LeanTweenType.easeOutQuint);
 
@@ -106,10 +128,14 @@ public class MainMenuManager : MonoBehaviour
             LeanTween.alpha(credMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
             LeanTween.scale(credMenu, new Vector2(1f,1f),0.3f).setEase(LeanTweenType.easeOutQuint);
             LeanTween.moveLocal(credMenu, new Vector2(510f, -300f),0.3f).setEase(LeanTweenType.easeOutQuint);
+
+            LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0f, 0.3f);
+            LeanTween.scale(quitMenu, new Vector2(1f,1f),0.3f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.3f).setEase(LeanTweenType.easeOutQuint);
         }
     }
 
-    public void QuitGame() => Application.Quit();
+    //public void QuitGame() => Application.Quit();
 
 
 
