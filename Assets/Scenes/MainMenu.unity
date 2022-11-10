@@ -549,6 +549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cba2ea81b67afc4889aadd868523758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whiteHex: '#F1F1F1'
+  blackHex: '#1F1F1F'
   credBtn: {fileID: 1959473936}
   credMenu: {fileID: 1848697335}
   mainMenu: {fileID: 790205200}
