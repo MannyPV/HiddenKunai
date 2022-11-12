@@ -12,6 +12,8 @@ public class MainMenuManager : MonoBehaviour
     public GameObject credBtn, credMenu, mainMenu, helpMenu, optMenu, quitMenu, quitopt, playTran;
     public TextMeshProUGUI topText;
 
+    public ScoreManager scoreManager;
+
     bool ButtonClicked;
 
     void Start()
@@ -33,6 +35,8 @@ public class MainMenuManager : MonoBehaviour
         LeanTween.moveLocal(playTran, new Vector2(0f, 0f),0.2f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.scale(playTran, new Vector2(1.3f,2.73f),0.4f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
+
+        scoreManager.score += scoreManager.addScore;
     }
 
     public void OptBig()
@@ -90,11 +94,34 @@ public class MainMenuManager : MonoBehaviour
         helpMenu.SetActive(false);
         credMenu.SetActive(false);
         quitopt.SetActive(true);
+       
         LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0.3f, 0.15f);
         LeanTween.scale(quitMenu, new Vector2(1.8f,1.7f),0.3f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.moveLocal(quitMenu, new Vector2(-860f,-440f),0.01f).setEase(LeanTweenType.easeOutQuint);
     }
+
+    public void QuitYes() => Application.Quit();
+
+    public void QuitNo()
+    {
+        ButtonClicked = false;
+        topText.text = "HIDDEN  KUNAI";
+        topText.fontSize = 115;
+            
+        playTran.SetActive(true);
+        optMenu.SetActive(true);
+        helpMenu.SetActive(true);
+        credMenu.SetActive(true);
+        quitMenu.SetActive(true);
+        quitopt.SetActive(false);
+
+        LeanTween.scale(mainMenu, new Vector2(1f,1f),0.25f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0f, 0.3f);
+        LeanTween.scale(quitMenu, new Vector2(1f,1f),0.3f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.3f).setEase(LeanTweenType.easeOutQuint);
+    }
+    
 
     void Update()
     {
@@ -134,11 +161,6 @@ public class MainMenuManager : MonoBehaviour
             LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.3f).setEase(LeanTweenType.easeOutQuint);
         }
     }
-
-    //public void QuitGame() => Application.Quit();
-
-
-
 
 
     
