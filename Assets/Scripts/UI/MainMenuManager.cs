@@ -15,6 +15,7 @@ public class MainMenuManager : MonoBehaviour
     public ScoreManager scoreManager;
 
     bool ButtonClicked;
+    public float MenuClosed;
 
     void Start()
     {
@@ -34,7 +35,7 @@ public class MainMenuManager : MonoBehaviour
         LeanTween.alpha(playTran.GetComponent<RectTransform>(), 1f, 0.4f);
         LeanTween.moveLocal(playTran, new Vector2(0f, 0f),0.2f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.scale(playTran, new Vector2(1.3f,2.73f),0.4f).setEase(LeanTweenType.easeOutQuint);
-        LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
 
         scoreManager.score += scoreManager.addScore;
     }
@@ -48,7 +49,7 @@ public class MainMenuManager : MonoBehaviour
         credMenu.SetActive(false);
         helpMenu.SetActive(false);
         quitMenu.SetActive(false);
-        LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(optMenu.GetComponent<RectTransform>(), 1f, 0.15f);
         LeanTween.scale(optMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.moveLocal(optMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint);
@@ -63,7 +64,7 @@ public class MainMenuManager : MonoBehaviour
         credMenu.SetActive(false);
         optMenu.SetActive(false);
         quitMenu.SetActive(false);
-        LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(helpMenu.GetComponent<RectTransform>(), 1f, 0.15f);
         LeanTween.scale(helpMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.moveLocal(helpMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint);
@@ -78,7 +79,7 @@ public class MainMenuManager : MonoBehaviour
         optMenu.SetActive(false);
         helpMenu.SetActive(false);
         quitMenu.SetActive(false);
-        LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(credMenu.GetComponent<RectTransform>(), 1f, 0.15f);
         LeanTween.scale(credMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.moveLocal(credMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint);
@@ -95,7 +96,7 @@ public class MainMenuManager : MonoBehaviour
         credMenu.SetActive(false);
         quitopt.SetActive(true);
        
-        LeanTween.scale(mainMenu, new Vector2(0f,0f),0.1f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0.3f, 0.15f);
         LeanTween.scale(quitMenu, new Vector2(1.8f,1.7f),0.3f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.moveLocal(quitMenu, new Vector2(-860f,-440f),0.01f).setEase(LeanTweenType.easeOutQuint);
@@ -118,8 +119,8 @@ public class MainMenuManager : MonoBehaviour
 
         LeanTween.scale(mainMenu, new Vector2(1f,1f),0.25f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0f, 0.3f);
-        LeanTween.scale(quitMenu, new Vector2(1f,1f),0.3f).setEase(LeanTweenType.easeOutQuint);
-        LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.3f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.scale(quitMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.2f).setEase(LeanTweenType.easeOutQuint);
     }
     
 
@@ -138,27 +139,27 @@ public class MainMenuManager : MonoBehaviour
             quitMenu.SetActive(true);
             quitopt.SetActive(false);
 
-            LeanTween.scale(mainMenu, new Vector2(1f,1f),0.25f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.scale(mainMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
 
-            LeanTween.alpha(playTran.GetComponent<RectTransform>(), 0.35f, 0.5f);
-            LeanTween.moveLocal(playTran, new Vector2(0f, 120f),0.3f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.alpha(playTran.GetComponent<RectTransform>(), 0.35f, 0.3f);
+            LeanTween.moveLocal(playTran, new Vector2(0f, 120f),0.2f).setEase(LeanTweenType.easeOutQuint);
             LeanTween.scale(playTran, new Vector2(1f,1f),0.5f).setEase(LeanTweenType.easeOutQuint);
 
             LeanTween.alpha(optMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
-            LeanTween.scale(optMenu, new Vector2(1f,1f),0.3f).setEase(LeanTweenType.easeOutQuint);
-            LeanTween.moveLocal(optMenu, new Vector2(-510f, -300f),0.3f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.scale(optMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(optMenu, new Vector2(-510f, -300f),0.2f).setEase(LeanTweenType.easeOutQuint);
 
             LeanTween.alpha(helpMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
-            LeanTween.scale(helpMenu, new Vector2(1f,1f),0.3f).setEase(LeanTweenType.easeOutQuint);
-            LeanTween.moveLocal(helpMenu, new Vector2(0f, -300f),0.3f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.scale(helpMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(helpMenu, new Vector2(0f, -300f),0.2f).setEase(LeanTweenType.easeOutQuint);
 
             LeanTween.alpha(credMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
-            LeanTween.scale(credMenu, new Vector2(1f,1f),0.3f).setEase(LeanTweenType.easeOutQuint);
-            LeanTween.moveLocal(credMenu, new Vector2(510f, -300f),0.3f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.scale(credMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(credMenu, new Vector2(510f, -300f),0.2f).setEase(LeanTweenType.easeOutQuint);
 
             LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0f, 0.3f);
-            LeanTween.scale(quitMenu, new Vector2(1f,1f),0.3f).setEase(LeanTweenType.easeOutQuint);
-            LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.3f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.scale(quitMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.2f).setEase(LeanTweenType.easeOutQuint);
         }
     }
 

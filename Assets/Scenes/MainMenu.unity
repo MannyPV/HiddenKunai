@@ -830,6 +830,7 @@ MonoBehaviour:
   playTran: {fileID: 413756723}
   topText: {fileID: 44175861}
   scoreManager: {fileID: 619607991}
+  MenuClosed: 0.02
 --- !u!1 &413756723
 GameObject:
   m_ObjectHideFlags: 0
