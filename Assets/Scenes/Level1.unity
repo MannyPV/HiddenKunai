@@ -521,6 +521,11 @@ MonoBehaviour:
   dashCooldown: 5
   dashSpeed: 40
   canDash: 1
+  dashNeedsReset: 0
+  projectilePrefab: {fileID: 7344186190141047139, guid: 3bc05693bb3f547d79dea7f138da90f8, type: 3}
+  numOfShots: 3
+  shotsCooldown: 5
+  shotsNeedReset: 0
   canMove: 1
   speed: 6
   stickDirection: {x: 0, y: 0, z: 0}
