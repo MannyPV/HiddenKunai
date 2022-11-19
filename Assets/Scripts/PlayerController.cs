@@ -40,11 +40,24 @@ public class PlayerController : MonoBehaviour
     public  Vector3 stickDirection;           // The direction the stick is pushed towards
     public  Vector3 moveDirection;            // The direction the player is moving
 
+    //     ANIMATOR VARIABLES     //
+    [Header("Animator Values")]
+    public Animator anim;                                                            // Animator controller reference
+    private int jumpHash = Animator.StringToHash("Jump");                            // The hashID of the jump trigger parameter in animator
+    private int isGroundedHash = Animator.StringToHash("isGrounded");                // The hashID of the of the grounded boolean for the animator
+    private int isWalkingHash = Animator.StringToHash("isWalking");                  // The hashID of the walking boolean for the animator
+    private int dashHash = Animator.StringToHash("Dash");                            // The hashID of the dash trigger parameter in animator
+    private int isWalkingBackwardHash = Animator.StringToHash("isWalkingBackward");  // The hashID of the walking boolean for the animator
+    private int isWalkingForwardHash = Animator.StringToHash("isWalkingForward");    // The hashID of the walking boolean for the animator
+    private int ThrowKunaiHash = Animator.StringToHash("ThrowKunai");
+
     /////////// METHODS ////////////
 
     private void Start()
     {
         controller = gameObject.GetComponent<Rigidbody>();
+        
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -54,14 +67,19 @@ public class PlayerController : MonoBehaviour
             // Gather input for jumping
             if (Input.GetKeyDown(KeyCode.Space) && numOfJumps > 0)
             {
+
                 // Set this bool as true for FixedUpdate to see the input and execute the physics
                 playerJumped = true;
                 numOfJumps--;
+
             }
 
             // Gather input for dashing
             if (Input.GetKeyDown(KeyCode.LeftShift) && numOfDashes > 0 && canDash)
             {
+                // Trigger Dash animation
+                anim.SetTrigger(dashHash);
+
                 controller.useGravity = false;
                 numOfDashes--;
 
@@ -78,6 +96,9 @@ public class PlayerController : MonoBehaviour
             // Gather input for shooting
             if (Input.GetKeyDown(KeyCode.J) && stickDirection.magnitude != 0 && stickDirection.y >= 0 && numOfShots > 0)
             {
+                // Trigger animation for throwing kunai
+                anim.SetTrigger(ThrowKunaiHash);
+
                 // Create a projectile at the player in the direction the stick is pointing
                 Instantiate(projectilePrefab, transform.position + stickDirection, Quaternion.LookRotation(stickDirection));
                 numOfShots--;
@@ -127,6 +148,14 @@ public class PlayerController : MonoBehaviour
         {
             // Move the player left or right
             controller.MovePosition(transform.position + moveDirection * speed * Time.deltaTime);
+
+        }
+
+        // If the stick is NOT being moved at all
+        else
+        {
+            // Set animator parameter for Walking
+            anim.SetBool(isWalkingHash, false);
         }
 
         RotatePlayer();
@@ -134,6 +163,12 @@ public class PlayerController : MonoBehaviour
         // If the update method registered a jump input execute a jump
         if (playerJumped == true)
         {
+            // Trigger jump animation
+            anim.SetTrigger(jumpHash);
+
+            // Set animator parameter for ground check animations
+            anim.SetBool(isGroundedHash, false);
+
             controller.velocity = Vector3.zero;
             controller.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
             playerJumped = false;
@@ -146,8 +181,11 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Floor"))
         {
             numOfJumps = 2;
+
+            // Set animator parameter for ground check animations
+            anim.SetBool(isGroundedHash, true);
         }
-    }
+    } 
 
     // Execute a physics based dash using the values set in the inspector
     void DoDash()
@@ -182,22 +220,39 @@ public class PlayerController : MonoBehaviour
     }
 
     // Move the player to the left or to the right depending on what direction they are moving in
+  
     void RotatePlayer()
     {
         if (moveDirection.x > 0)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 120, 0), 0.2f);
+            // Set animator parameters for Walking Right
+            anim.SetBool(isWalkingHash, true);
+            anim.SetBool(isWalkingForwardHash, true);
+            anim.SetBool(isWalkingBackwardHash, false);
+
+            // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 120, 0), 0.2f);
         }
 
         if (moveDirection.x < 0)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 240, 0), 0.2f);
+            // Set animator parameters for Walking Right
+            anim.SetBool(isWalkingHash, true);
+            anim.SetBool(isWalkingForwardHash, false);
+            anim.SetBool(isWalkingBackwardHash, true);
+
+            // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 240, 0), 0.2f);
         }
 
         // If the player is not moving the character faces the camera
         if (moveDirection.x == 0)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 180, 0), 0.2f);
+            // Set animator parameters for Walking Right
+            anim.SetBool(isWalkingHash, false);
+            anim.SetBool(isWalkingForwardHash, false);
+            anim.SetBool(isWalkingBackwardHash, false);
+
+            // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 180, 0), 0.2f);
         }
     }
+
 }
