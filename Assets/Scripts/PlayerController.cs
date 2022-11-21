@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Gather input for shooting
-            if (Input.GetKeyDown(KeyCode.J) && numOfShots > 0)
+            if (Input.GetKeyDown(KeyCode.E) && numOfShots > 0)
             {
                 // Trigger animation for throwing kunai
                 anim.SetTrigger(ThrowKunaiHash);

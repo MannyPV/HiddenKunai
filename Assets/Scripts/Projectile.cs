@@ -26,7 +26,12 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Enemy"))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().numOfDashes++;
+            Destroy(gameObject);
+        }
         Debug.Log("Projetile Collided");
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
