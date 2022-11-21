@@ -34,10 +34,15 @@ public class MainMenuManager : MonoBehaviour
         topText.text = ("<color=" + blackHex + ">HIDDEN  KUNAI</color>");
         LeanTween.alpha(playTran.GetComponent<RectTransform>(), 1f, 0.4f);
         LeanTween.moveLocal(playTran, new Vector2(0f, 0f),0.2f).setEase(LeanTweenType.easeOutQuint);
-        LeanTween.scale(playTran, new Vector2(1.3f,2.73f),0.4f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.scale(playTran, new Vector2(1.3f,2.73f),0.4f).setEase(LeanTweenType.easeOutQuint).setOnComplete(NextLevel);
         LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
 
         scoreManager.score += scoreManager.addScore;
+    }
+
+    void NextLevel()
+    {
+        SceneManager.LoadScene("Level 1");
     }
 
     public void OptBig()
