@@ -166,6 +166,7 @@ public class MainMenuManager : MonoBehaviour
             LeanTween.scale(quitMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
             LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.2f).setEase(LeanTweenType.easeOutQuint);
         }
+
     }
 
 
