@@ -130,15 +130,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickDirection: {x: 0, y: 0, z: 0}
-  numOfJumps: 2
+  canJump: 1
   jumpStrength: 20
+  inTheAir: 0
   numOfDashes: 2
   dashLength: 0.2
-  dashCooldown: 5
   dashSpeed: 40
-  canDash: 1
   dashNeedsReset: 0
-  projectilePrefab: {fileID: 7344186190141047139, guid: 3bc05693bb3f547d79dea7f138da90f8, type: 3}
+  projectilePrefab: {fileID: 6709353842755094826, guid: 8c814ca5bcfda88448f6e31c0a3e46b4, type: 3}
   numOfShots: 3
   shotsCooldown: 5
   shotsNeedReset: 0
@@ -201,6 +200,30 @@ PrefabInstance:
     - target: {fileID: 2026057748148183439, guid: 83b5631942105d041b5d88b4b53b49d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632069154768948375, guid: 83b5631942105d041b5d88b4b53b49d8, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 0.000009754673
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632069154768948375, guid: 83b5631942105d041b5d88b4b53b49d8, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: -0.0033482537
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632069154768948375, guid: 83b5631942105d041b5d88b4b53b49d8, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: -0.00017813686
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632069154768948375, guid: 83b5631942105d041b5d88b4b53b49d8, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.015408721
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632069154768948375, guid: 83b5631942105d041b5d88b4b53b49d8, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.017900327
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632069154768948375, guid: 83b5631942105d041b5d88b4b53b49d8, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.0042442954
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83b5631942105d041b5d88b4b53b49d8, type: 3}

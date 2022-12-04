@@ -52,6 +52,11 @@ public class PlayerController : MonoBehaviour
     private int isWalkingForwardHash = Animator.StringToHash("isWalkingForward");    // The hashID of the walking boolean for the animator
     private int ThrowKunaiHash = Animator.StringToHash("ThrowKunai");
 
+    //      Audio Variables     //
+    [SerializeField] private AudioClip music1;
+    [SerializeField] private AudioClip music2;
+    [SerializeField] private AudioClip SFX;
+
     /////////// METHODS ////////////
 
     private void Start()

@@ -9,6 +9,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] string whiteHex;
     [SerializeField] string blackHex;
 
+    // Audio Clips for Main Menu
+    [SerializeField] private AudioClip music1;
+/*    [SerializeField] private AudioClip music2;
+    [SerializeField] private AudioClip buttonClickSFX;*/
+
     public GameObject credBtn, credMenu, mainMenu, helpMenu, optMenu, quitMenu, quitopt, playTran;
     public TextMeshProUGUI topText;
 
@@ -22,6 +27,9 @@ public class MainMenuManager : MonoBehaviour
         topText.text = "HIDDEN  KUNAI";
         topText.fontSize = 115;
         ButtonClicked = false;
+
+        // Play menu music
+        AudioManager.Instance.PlayMusicWithFade(music1, 3);
     }
 
     public void PlayClicked()
