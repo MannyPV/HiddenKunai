@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class Damage_Enemy : MonoBehaviour
 {
+    PlayerController playerScript;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().numOfDashes++;
-            Destroy(gameObject);
+            playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            if (playerScript.isDashing == true)
+            {
+                playerScript.numOfDashes++;
+                Destroy(gameObject);
+            }
+
+            else
+            {
+                playerScript.alive = false;
+            }
         }
         if (other.CompareTag("Kunai"))
         {

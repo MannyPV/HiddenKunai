@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody controller;             // The Player Controller
     public  Vector3 stickDirection;           // The direction the stick is pushed towards
     private TrailRenderer trail;
+    public  bool alive = true;                // Whether or not the player is alive
 
     //     JUMPING VARIABLES      //
     [Header("Jumping Values")]
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public  float   dashLength = 0.3f;        // How long dash lasts
     public  float   dashSpeed = 10;           // Speed of dash
     public  bool    dashNeedsReset = false;   // Whether or not the player has used all their dashes
+    public bool     isDashing = false;        // Whether or not the player is currently dashing
 
     //     SHOOTING VARIABLES      //
     [Header("Shooting Values")]
@@ -68,6 +70,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(alive == false)
+        {
+            GoLoseScreen();
+        }
+
         // Shows the direction the stick is currently pointed towards
         Debug.DrawRay(transform.position, stickDirection * 10, Color.red);
         // Shows the current shooting direction
@@ -92,6 +99,7 @@ public class PlayerController : MonoBehaviour
                 controller.useGravity = false;
                 numOfDashes--;
 
+                isDashing = true;
                 DoDash();
             }
 
@@ -173,6 +181,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Floor"))
         {
+            isDashing = false;
             canJump = true;
             numOfDashes = 1;
             inTheAir = false;
@@ -246,5 +255,10 @@ public class PlayerController : MonoBehaviour
             anim.SetBool(isWalkingForwardHash, false);
             anim.SetBool(isWalkingBackwardHash, false);
         }
+    }
+
+    void GoLoseScreen()
+    {
+        Debug.Log("Player died");
     }
 }
