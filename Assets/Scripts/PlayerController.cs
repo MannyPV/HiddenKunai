@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public  float   jumpStrength = 2f;        // How high the player can jump
     private bool    playerJumped = false;     // Whether or not the player inputted a jump
     public  bool    inTheAir = false;         // Whether or not the player is in the air
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
+
 
     //     DASHING VARIABLES      //
     [Header("Dashing Values")]
@@ -76,6 +79,15 @@ public class PlayerController : MonoBehaviour
             GoLoseScreen();
         }
 
+        //the faster fall component
+        if (controller.velocity.y < 0)
+        {
+            controller.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (controller.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            controller.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
         // Shows the direction the stick is currently pointed towards
         Debug.DrawRay(transform.position, stickDirection * 10, Color.red);
         // Shows the current shooting direction
