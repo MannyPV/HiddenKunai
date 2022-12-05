@@ -5,6 +5,7 @@ using UnityEngine;
 public class Damage_Enemy : MonoBehaviour
 {
     PlayerController playerScript;
+    PlayerPosition respawn;
 
     //  Audio Variables //
     [SerializeField] private AudioClip destroyedSFX;
@@ -25,9 +26,11 @@ public class Damage_Enemy : MonoBehaviour
 
             else
             {
-                playerScript.alive = false;
+                respawn = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPosition>();
+                respawn.StartCoroutine("Respawn");
             }
         }
+
         if (other.CompareTag("Kunai"))
         {
             // play destroyed SFX

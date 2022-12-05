@@ -14466,7 +14466,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4112756087699706497, guid: 4dc5676c9d4904911ad52d9a07d689a2, type: 3}
       propertyPath: m_Radius
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4112756087699706498, guid: 4dc5676c9d4904911ad52d9a07d689a2, type: 3}
       propertyPath: m_RootOrder

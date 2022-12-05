@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody controller;             // The Player Controller
     public  Vector3 stickDirection;           // The direction the stick is pushed towards
     private TrailRenderer trail;
-    public  bool alive = true;                // Whether or not the player is alive
 
     //     JUMPING VARIABLES      //
     [Header("Jumping Values")]
@@ -74,11 +73,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(alive == false)
-        {
-            GoLoseScreen();
-        }
-
         //the faster fall component
         if (controller.velocity.y < 0)
         {
@@ -88,6 +82,7 @@ public class PlayerController : MonoBehaviour
         {
             controller.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+
         // Shows the direction the stick is currently pointed towards
         Debug.DrawRay(transform.position, stickDirection * 10, Color.red);
         // Shows the current shooting direction
@@ -275,10 +270,5 @@ public class PlayerController : MonoBehaviour
             anim.SetBool(isWalkingForwardHash, false);
             anim.SetBool(isWalkingBackwardHash, false);
         }
-    }
-
-    void GoLoseScreen()
-    {
-        Debug.Log("Player died");
     }
 }

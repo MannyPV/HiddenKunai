@@ -6,9 +6,6 @@ public class KillPlayer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerController>().alive = false;
-        }
+        Debug.Log("Ignore");
     }
 }
