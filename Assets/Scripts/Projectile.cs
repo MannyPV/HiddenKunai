@@ -28,17 +28,21 @@ public class Projectile : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
+            Debug.Log("Kunai hit Enemy");
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().numOfDashes++;
             Destroy(gameObject);
         }
+
         if (other.CompareTag("Floor"))
         {
+            Debug.Log("Kunai hit Floor");
             Destroy(gameObject);
         }
+
         if (other.CompareTag("Wall"))
         {
+            Debug.Log("Kunai hit Wall");
             Destroy(gameObject);
         }
-        Debug.Log("Projetile Collided");
     }
 }
