@@ -7,6 +7,8 @@ TagManager:
   - Floor
   - Kunai
   - Enemy
+  - Trap
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

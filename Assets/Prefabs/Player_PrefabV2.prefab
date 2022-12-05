@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4722156447514587125}
   - component: {fileID: 4722156447514587126}
   - component: {fileID: 4722156447514587130}
+  - component: {fileID: 7818704279792153337}
   - component: {fileID: 4722156447514587127}
   m_Layer: 0
   m_Name: Player_PrefabV2
@@ -117,6 +118,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &7818704279792153337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722156447514587120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4092bd942a6c99d4ea002059497e1950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  animator: {fileID: 6493278006245099359}
+  Checkpoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4722156447514587127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +150,8 @@ MonoBehaviour:
   canJump: 1
   jumpStrength: 20
   inTheAir: 0
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
   numOfDashes: 2
   dashLength: 0.2
   dashSpeed: 40
