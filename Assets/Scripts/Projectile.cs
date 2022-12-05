@@ -31,7 +31,14 @@ public class Projectile : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().numOfDashes++;
             Destroy(gameObject);
         }
+        if (other.CompareTag("Floor"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
         Debug.Log("Projetile Collided");
-        //Destroy(gameObject);
     }
 }
