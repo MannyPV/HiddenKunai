@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             // Gather input for jumping
-            if (Input.GetKeyDown(KeyCode.Space) && inTheAir == false && canJump == true)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton9)) && inTheAir == false && canJump == true)
             {
                 // Set this bool as true for FixedUpdate to see the input and execute the physics
                 playerJumped = true;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Gather input for dashing
-            if (Input.GetKeyDown(KeyCode.Space) && inTheAir == true && numOfDashes > 0)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton9)) && inTheAir == true && numOfDashes > 0)
             {
                 // Trigger Dash animation
                 anim.SetTrigger(dashHash);
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Gather input for shooting
-            if (Input.GetKeyDown(KeyCode.E) && numOfShots > 0)
+            if ((Input.GetKeyDown(KeyCode.E) || Input.GetAxisRaw("RT")!= 0) && numOfShots > 0)
             {
                 // Trigger SFX for throwing kunai
                 AudioManager.Instance.PlaySFX(throwKunaiSFX);
