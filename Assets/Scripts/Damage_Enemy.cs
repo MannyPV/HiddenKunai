@@ -6,6 +6,9 @@ public class Damage_Enemy : MonoBehaviour
 {
     PlayerController playerScript;
 
+    //  Audio Variables //
+    [SerializeField] private AudioClip destroyedSFX;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -13,6 +16,9 @@ public class Damage_Enemy : MonoBehaviour
             playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             if (playerScript.isDashing == true)
             {
+                // play destroyed SFX
+                AudioManager.Instance.PlaySFX(destroyedSFX);
+
                 playerScript.numOfDashes++;
                 Destroy(gameObject);
             }
@@ -24,6 +30,9 @@ public class Damage_Enemy : MonoBehaviour
         }
         if (other.CompareTag("Kunai"))
         {
+            // play destroyed SFX
+            AudioManager.Instance.PlaySFX(destroyedSFX);
+
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().numOfDashes++;
             Destroy(gameObject);
         }

@@ -11,8 +11,7 @@ public class MainMenuManager : MonoBehaviour
 
     // Audio Clips for Main Menu
     [SerializeField] private AudioClip music1;
-/*    [SerializeField] private AudioClip music2;
-    [SerializeField] private AudioClip buttonClickSFX;*/
+    [SerializeField] private AudioClip buttonClickSFX;
 
     public GameObject credBtn, credMenu, mainMenu, helpMenu, optMenu, quitMenu, quitopt, playTran;
     public TextMeshProUGUI topText;
@@ -34,6 +33,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayClicked()
     {
+        AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
+
         ButtonClicked = true;
         optMenu.SetActive(false);
         helpMenu.SetActive(false);
@@ -55,6 +56,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void OptBig()
     {
+        AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
+
         ButtonClicked = true;
         topText.text = "OPTIONS";
         topText.fontSize = 120;
@@ -70,6 +73,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void HelpBig()
     {
+        AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
+
         ButtonClicked = true;
         topText.text = "HELP";
         topText.fontSize = 120;
@@ -85,6 +90,8 @@ public class MainMenuManager : MonoBehaviour
   
     public void CredBig()
     {
+        AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
+
         ButtonClicked = true;
         topText.text = "Credits";
         topText.fontSize = 120;
@@ -100,6 +107,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void QuitClicked()
     {
+        AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
+
         ButtonClicked = true;
         topText.text = "Quit?";
         topText.fontSize = 120;
@@ -119,6 +128,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void QuitNo()
     {
+        AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
+
         ButtonClicked = false;
         topText.text = "HIDDEN  KUNAI";
         topText.fontSize = 115;
@@ -141,6 +152,8 @@ public class MainMenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown("escape") && ButtonClicked == true)
         {
+            AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
+
             ButtonClicked = false;
             topText.text = "HIDDEN  KUNAI";
             topText.fontSize = 115;

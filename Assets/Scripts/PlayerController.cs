@@ -55,9 +55,10 @@ public class PlayerController : MonoBehaviour
     private int ThrowKunaiHash = Animator.StringToHash("ThrowKunai");
 
     //      Audio Variables     //
-    [SerializeField] private AudioClip music1;
-    [SerializeField] private AudioClip music2;
-    [SerializeField] private AudioClip SFX;
+    [SerializeField] private AudioClip hitSFX;
+    [SerializeField] private AudioClip throwKunaiSFX;
+    [SerializeField] private AudioClip dashSFX;
+
 
     /////////// METHODS ////////////
 
@@ -96,6 +97,9 @@ public class PlayerController : MonoBehaviour
                 // Trigger Dash animation
                 anim.SetTrigger(dashHash);
 
+                // Trigger Dash SFX
+                AudioManager.Instance.PlaySFX(dashSFX);
+
                 controller.useGravity = false;
                 numOfDashes--;
 
@@ -106,8 +110,12 @@ public class PlayerController : MonoBehaviour
             // Gather input for shooting
             if (Input.GetKeyDown(KeyCode.E) && numOfShots > 0)
             {
+                // Trigger SFX for throwing kunai
+                AudioManager.Instance.PlaySFX(throwKunaiSFX);
+                
                 // Trigger animation for throwing kunai
                 anim.SetTrigger(ThrowKunaiHash);
+
 
                 // Create a projectile at the player in the direction the stick is pointing
                 Instantiate(projectilePrefab, transform.position + shootDirection, Quaternion.LookRotation(shootDirection));
@@ -242,7 +250,7 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection.x < 0)
         {
-            // Set animator parameters for Walking Right
+            // Set animator parameters for Walking Left
             anim.SetBool(isWalkingHash, true);
             anim.SetBool(isWalkingForwardHash, false);
             anim.SetBool(isWalkingBackwardHash, true);
@@ -250,7 +258,7 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection.x == 0)
         {
-            // Set animator parameters for Walking Right
+            // Set animator parameters for Walking idling
             anim.SetBool(isWalkingHash, false);
             anim.SetBool(isWalkingForwardHash, false);
             anim.SetBool(isWalkingBackwardHash, false);

@@ -821,6 +821,7 @@ MonoBehaviour:
   whiteHex: '#F1F1F1'
   blackHex: '#1F1F1F'
   music1: {fileID: 8300000, guid: 41d5ecbfee32c554abe49e0c0ac16f6d, type: 3}
+  buttonClickSFX: {fileID: 8300000, guid: 5b32066a6daa8514e994e8ea37032c21, type: 3}
   credBtn: {fileID: 1959473936}
   credMenu: {fileID: 1848697335}
   mainMenu: {fileID: 790205200}
