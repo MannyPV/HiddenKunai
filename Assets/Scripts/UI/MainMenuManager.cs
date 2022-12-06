@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioClip music1;
     [SerializeField] private AudioClip buttonClickSFX;
 
-    public GameObject credBtn, credMenu, mainMenu, helpMenu, optMenu, quitMenu, quitopt, playTran;
+    public GameObject credBtn, credMenu, mainMenu, helpMenu, optMenu, quitMenu, quitopt, quitBtn, playBtn, playTran, quitNoBtn, titleHolder, resetHolder,
+                      credtextHolder;
+
     public TextMeshProUGUI topText;
 
     public ScoreManager scoreManager;
@@ -26,6 +29,9 @@ public class MainMenuManager : MonoBehaviour
         topText.text = "HIDDEN  KUNAI";
         topText.fontSize = 115;
         ButtonClicked = false;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(playBtn);
 
         // Play menu music
         AudioManager.Instance.PlayMusicWithFade(music1, 3);
@@ -43,10 +49,16 @@ public class MainMenuManager : MonoBehaviour
         topText.text = ("<color=" + blackHex + ">HIDDEN  KUNAI</color>");
         LeanTween.alpha(playTran.GetComponent<RectTransform>(), 1f, 0.4f);
         LeanTween.moveLocal(playTran, new Vector2(0f, 0f),0.2f).setEase(LeanTweenType.easeOutQuint);
-        LeanTween.scale(playTran, new Vector2(1.3f,2.73f),0.4f).setEase(LeanTweenType.easeOutQuint).setOnComplete(NextLevel);
+        LeanTween.scale(playTran, new Vector2(1.3f,2.73f),0.4f).setEase(LeanTweenType.easeOutQuint).setOnComplete(MoveTopText);
         LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
 
         scoreManager.score += scoreManager.addScore;
+    }
+
+    void MoveTopText()
+    {
+        LeanTween.moveLocal(resetHolder, new Vector2(0f, -600f), 0.75f).setDelay(0.25f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.moveLocal(titleHolder, new Vector2(0f, 600f), 0.75f).setDelay(0.25f).setEase(LeanTweenType.easeOutQuint).setOnComplete(NextLevel);
     }
 
     void NextLevel()
@@ -56,6 +68,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void OptBig()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+
         AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
 
         ButtonClicked = true;
@@ -71,8 +85,15 @@ public class MainMenuManager : MonoBehaviour
         LeanTween.moveLocal(optMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint);
     }
 
+    void OptOpened()
+    {
+
+    }
+
     public void HelpBig()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+
         AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
 
         ButtonClicked = true;
@@ -87,9 +108,16 @@ public class MainMenuManager : MonoBehaviour
         LeanTween.scale(helpMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
         LeanTween.moveLocal(helpMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint);
     }
-  
+
+    void HelpOpened()
+    {
+
+    }
+
     public void CredBig()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+
         AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
 
         ButtonClicked = true;
@@ -102,11 +130,19 @@ public class MainMenuManager : MonoBehaviour
         LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(credMenu.GetComponent<RectTransform>(), 1f, 0.15f);
         LeanTween.scale(credMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
-        LeanTween.moveLocal(credMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.moveLocal(credMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint).setOnComplete(CredOpened);
+    }
+
+    void CredOpened()
+    {
+        LeanTween.scale(credtextHolder, new Vector2(1f, 1f), 0.2f).setEase(LeanTweenType.easeOutQuint);
     }
 
     public void QuitClicked()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(quitNoBtn);
+
         AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
 
         ButtonClicked = true;
@@ -121,13 +157,16 @@ public class MainMenuManager : MonoBehaviour
         LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0.3f, 0.15f);
         LeanTween.scale(quitMenu, new Vector2(1.8f,1.7f),0.3f).setEase(LeanTweenType.easeOutQuint);
-        LeanTween.moveLocal(quitMenu, new Vector2(-860f,-440f),0.01f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.moveLocal(quitMenu, new Vector2(-860f,-392f),0.01f).setEase(LeanTweenType.easeOutQuint);
     }
 
     public void QuitYes() => Application.Quit();
 
     public void QuitNo()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(quitBtn);
+
         AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
 
         ButtonClicked = false;
@@ -152,6 +191,9 @@ public class MainMenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown("escape") && ButtonClicked == true)
         {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(playBtn);
+
             AudioManager.Instance.PlaySFX(buttonClickSFX, 2);
 
             ButtonClicked = false;
@@ -173,19 +215,20 @@ public class MainMenuManager : MonoBehaviour
 
             LeanTween.alpha(optMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
             LeanTween.scale(optMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
-            LeanTween.moveLocal(optMenu, new Vector2(-510f, -300f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(optMenu, new Vector2(-510f, -250f),0.2f).setEase(LeanTweenType.easeOutQuint);
 
             LeanTween.alpha(helpMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
             LeanTween.scale(helpMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
-            LeanTween.moveLocal(helpMenu, new Vector2(0f, -300f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(helpMenu, new Vector2(0f, -250f),0.2f).setEase(LeanTweenType.easeOutQuint);
 
             LeanTween.alpha(credMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
             LeanTween.scale(credMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
-            LeanTween.moveLocal(credMenu, new Vector2(510f, -300f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(credMenu, new Vector2(510f, -250f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.scale(credtextHolder, new Vector2(1f, 0f), 0.2f).setEase(LeanTweenType.easeOutQuint);
 
             LeanTween.alpha(quitMenu.GetComponent<RectTransform>(), 0f, 0.3f);
             LeanTween.scale(quitMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
-            LeanTween.moveLocal(quitMenu, new Vector2(-871f, -466f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.moveLocal(quitMenu, new Vector2(-871f, -392f),0.2f).setEase(LeanTweenType.easeOutQuint);
         }
 
     }
