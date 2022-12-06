@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             // Gather input for jumping
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton9)) && inTheAir == false && canJump == true)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) && inTheAir == false && canJump == true)
             {
                 // Set this bool as true for FixedUpdate to see the input and execute the physics
                 playerJumped = true;
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Gather input for dashing
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton9)) && inTheAir == true && numOfDashes > 0)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) && inTheAir == true && numOfDashes > 0)
             {
                 // Trigger Dash animation
                 anim.SetTrigger(dashHash);
