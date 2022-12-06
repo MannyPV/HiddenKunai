@@ -15,7 +15,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private AudioClip buttonClickSFX;
 
     public GameObject credBtn, credMenu, mainMenu, helpMenu, optMenu, quitMenu, quitopt, quitBtn, playBtn, playTran, quitNoBtn, titleHolder, resetHolder,
-                      credtextHolder;
+                      credtextHolder, helpTextHolder;
 
     public TextMeshProUGUI topText;
 
@@ -106,12 +106,12 @@ public class MainMenuManager : MonoBehaviour
         LeanTween.scale(mainMenu, new Vector2(0f,0f),MenuClosed).setEase(LeanTweenType.easeOutQuint);
         LeanTween.alpha(helpMenu.GetComponent<RectTransform>(), 1f, 0.15f);
         LeanTween.scale(helpMenu, new Vector2(3.09f,2.07f),0.3f).setEase(LeanTweenType.easeOutQuint);
-        LeanTween.moveLocal(helpMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint);
+        LeanTween.moveLocal(helpMenu, new Vector2(0f, -90f),0.3f).setEase(LeanTweenType.easeOutQuint).setOnComplete(HelpOpened);
     }
 
     void HelpOpened()
     {
-
+        LeanTween.scale(helpTextHolder, new Vector2(1f, 1f), 0.2f).setEase(LeanTweenType.easeOutQuint);
     }
 
     public void CredBig()
@@ -220,6 +220,8 @@ public class MainMenuManager : MonoBehaviour
             LeanTween.alpha(helpMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
             LeanTween.scale(helpMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
             LeanTween.moveLocal(helpMenu, new Vector2(0f, -250f),0.2f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.scale(helpTextHolder, new Vector2(1f, 0f), 0.2f).setEase(LeanTweenType.easeOutQuint);
+
 
             LeanTween.alpha(credMenu.GetComponent<RectTransform>(), 0.35f, 0.3f);
             LeanTween.scale(credMenu, new Vector2(1f,1f),0.2f).setEase(LeanTweenType.easeOutQuint);
