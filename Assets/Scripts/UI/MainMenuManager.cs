@@ -58,7 +58,7 @@ public class MainMenuManager : MonoBehaviour
     void MoveTopText()
     {
         LeanTween.moveLocal(resetHolder, new Vector2(0f, -600f), 0.75f).setDelay(0.25f).setEase(LeanTweenType.easeOutQuint);
-        LeanTween.moveLocal(titleHolder, new Vector2(0f, 600f), 0.75f).setDelay(0.25f).setEase(LeanTweenType.easeOutQuint).setOnComplete(NextLevel);
+        LeanTween.moveLocal(titleHolder, new Vector2(0f, 800f), 0.75f).setDelay(0.25f).setEase(LeanTweenType.easeOutQuint).setOnComplete(NextLevel);
     }
 
     void NextLevel()
