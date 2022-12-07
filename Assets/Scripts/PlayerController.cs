@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     //     SHOOTING VARIABLES      //
     [Header("Shooting Values")]
     public GameObject projectilePrefab;       // The prefab that will be shot by the player
-    public int        numOfShots = 3;         // How many shots the player has before needing to reload
+    public int        numOfShots = 1;         // How many shots the player has before needing to reload
     public float      shotsCooldown = 5f;     // How long it takes for the player to reload
     public bool       shotsNeedReset = false; // Whether or not the player has 0 shots
     public Vector3    shootDirection;         // What direction the projectile will go
@@ -240,7 +240,7 @@ public class PlayerController : MonoBehaviour
     // Replenish the amount of shots the player has
     void ResetShots()
     {
-        numOfShots = 3;
+        numOfShots = 1;
         Debug.Log("Shots Reset");
     }
 
